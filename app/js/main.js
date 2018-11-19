@@ -1,36 +1,24 @@
- function Machine(power) {
- 	this._enabled = false;
+'use strict'
 
- 	this.enable = function() {
- 		this._enabled = true;
- 	};
+function expandedForm(num) {
+	let str = '' + num;
+	let result = '';
 
- 	this.disable = function() {
- 		this._enabled = false;
- 	};
- }
+	if(num <= 0) return '' + num;
 
- function CoffeeMachine(power) {
- 	Machine.apply(this, arguments);
+	for(let i = 0; i < str.length; i++) {
+		if(str[i] == 0) continue;
+		
+		result += str[i] + '0'.repeat( str.length - 1 - i ) + '+';
+	}
 
- 	var waterAmount = 0;
+	return result.slice(0, result.length - 1)
+}
 
- 	this.setWaterAmount = function(amount) {
- 		waterAmount = amount;
- 	};
-
- 	function onReady() {
- 		alert('Кофе готово!');
- 	}
-
- 	this.run = function() {
- 		if(!this._enabled) throw new Error('Ошибка! Кофеварка не включена.');
- 		else setTimeout(onReady, 1000);
- 	};
- 	
-
- };
-
-var coffeeMachine = new CoffeeMachine(10000);
-coffeeMachine.enable();
-coffeeMachine.run(); // ошибка, кофеварка выключена!
+console.log(expandedForm(-10));
+console.log(expandedForm(0));
+console.log(expandedForm(3));
+console.log(expandedForm(12)); // Should return '10 + 2'
+console.log(expandedForm(42)); // Should return '40 + 2'
+console.log(expandedForm(70304)); // Should return '70000 + 300 + 4'
+console.log(expandedForm(120470304));

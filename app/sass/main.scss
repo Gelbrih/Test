@@ -1,2 +1,11 @@
-@import "_reset.scss";
-@import "_variables.scss";
+@import '_reset.scss';
+@import '_variables.scss';
+
+.div
+{
+    position: relative;
+
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+}
