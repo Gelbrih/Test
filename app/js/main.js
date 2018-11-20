@@ -1,6 +1,8 @@
-String.prototype.camelCase=function(){
-	return this.split(' ').map( (item) => item.charAt(0).toUpperCase() + item.slice(1) ).join('');
+function anagrams(word, words) {
+	return words.filter( (item, i) => 
+		item.split('').sort().join('') == word.split('').sort().join('') );
 }
 
-console.log( "hello case".camelCase() );//=> HelloCase
-console.log( "camel case word".camelCase() );//=> CamelCaseWord
+console.log( anagrams('abba', ['aabb', 'abcd', 'bbaa', 'dada']) );// => ['aabb', 'bbaa']
+console.log( anagrams('racer', ['crazer', 'carer', 'racar', 'caers', 'racer']) );// => ['carer', 'racer']
+console.log( anagrams('laser', ['lazing', 'lazy',  'lacer']) );// => []
